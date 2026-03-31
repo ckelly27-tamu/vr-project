@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit;
+
 using TMPro;
 
 public class MusicPlayer : MonoBehaviour
 {
     private bool isPlaying = false;
-    private Animator animator;
-    public GameObject animatedVinyl;
+    //private Animator animator;
+    public UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor socket;
     public GameObject playingVinyl;
     private Vinyl vinylComponent;
     private AudioSource audioSource;
@@ -19,26 +21,28 @@ public class MusicPlayer : MonoBehaviour
 
     void Awake()
     {
-        
+        socket.selectEntered.AddListener(OnObjectSnappedIn);
+        socket.selectExited.AddListener(OnObjectSnappedOut);
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnObjectSnappedIn(SelectEnterEventArgs args)
     {
-        playingVinyl = other.gameObject;
+        playingVinyl = args.interactableObject.transform.gameObject;
         audioSource = playingVinyl.GetComponent<AudioSource>();
 
         if (audioSource != null)
         {
             VPlay();
+        } else
+        {
+            
         }
     }
 
-    void OnTriggerExit(Collider other)
+    void OnObjectSnappedOut(SelectExitEventArgs args)
     {
-        if (playingVinyl == other.gameObject)
-        {
-            VPause();
-        }
+        if (audioSource != null) VPause();
+        playingVinyl = null;
     }
 
     // Update is called once per frame
@@ -50,13 +54,13 @@ public class MusicPlayer : MonoBehaviour
     void VPlay()
     {
         isPlaying = true;
-        animator.SetBool("IsPlaying", true);
+        //animator.SetBool("IsPlaying", true);
         audioSource.Play();
     }
     void VPause()
     {
         isPlaying = false;
-        animator.SetBool("IsPlaying", false);
+        //animator.SetBool("IsPlaying", false);
         audioSource.Stop();
     }
 }
