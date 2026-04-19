@@ -11,6 +11,7 @@ public class MusicPlayer : MonoBehaviour
     public UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor socket;
     public GameObject playingVinyl;
     private Vinyl vinylComponent;
+    private TrophyFlag flag;
     private AudioSource audioSource;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,6 +30,7 @@ public class MusicPlayer : MonoBehaviour
     {
         playingVinyl = args.interactableObject.transform.gameObject;
         audioSource = playingVinyl.GetComponent<AudioSource>();
+        flag = playingVinyl.GetComponent<TrophyFlag>();
 
         if (audioSource != null)
         {
@@ -36,6 +38,11 @@ public class MusicPlayer : MonoBehaviour
         } else
         {
             
+        }
+        
+        if (flag != null)
+        {
+            flag.RaiseFlag();
         }
     }
 
