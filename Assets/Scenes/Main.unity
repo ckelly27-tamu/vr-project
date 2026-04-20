@@ -432,6 +432,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 379a430eccf304de69024ac82ca98ae7, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: fa542ab47cc7bb3418c35926f8cab963, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 379a430eccf304de69024ac82ca98ae7, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6972650c3221c5947b3378280b736fd3, type: 2}
     - target: {fileID: 919132149155446097, guid: 379a430eccf304de69024ac82ca98ae7, type: 3}
       propertyPath: m_Name
       value: VRProject_ver3
