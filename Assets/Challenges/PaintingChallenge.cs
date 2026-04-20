@@ -24,6 +24,7 @@ public class PaintingChallenge : MonoBehaviour
 
     private int totalRounds = 3;
     private int goodRounds = 0;
+    private bool scramble = false;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -52,7 +53,7 @@ public class PaintingChallenge : MonoBehaviour
 
     void SelectPainting()
     {
-        int randomInt = Random.Range(1, 9);// Next(min, maxExclusive)
+        int randomInt = Random.Range(1, 9); // Next(min, maxExclusive)
 
         switch (randomInt)
         {
@@ -95,10 +96,52 @@ public class PaintingChallenge : MonoBehaviour
         }
 
         audioSource = rightPainting.GetComponent<AudioSource>();
-        rightPaintingScript = rightPainting.GetComponent<Painting>();
-
-        if (rightPaintingScript != null) rightPaintingScript.SelectPainting();
         if (audioSource != null) audioSource.Play();
+
+        if (scramble) {
+            switch (randomInt)
+            {
+                case 1:
+                default:
+                rightPainting = painting1;
+                break;
+
+                case 2:
+                rightPainting = painting2;
+                break;
+
+                case 3:
+                rightPainting = painting3;
+                break;
+
+                case 4:
+                rightPainting = painting4;
+                break;
+
+                case 5:
+                rightPainting = painting5;
+                break;
+
+                case 6:
+                rightPainting = painting6;
+                break;
+
+                case 7:
+                rightPainting = painting7;
+                break;
+
+                case 8:
+                rightPainting = painting8;
+                break;
+
+                case 9:
+                rightPainting = painting9;
+                break;
+            }
+        }
+
+        rightPaintingScript = rightPainting.GetComponent<Painting>();
+        if (rightPaintingScript != null) rightPaintingScript.SelectPainting();
     }
 
     public void TestPainting(Painting p)
@@ -121,6 +164,16 @@ public class PaintingChallenge : MonoBehaviour
         {
             incorrectAS.Play();
             goodRounds = 0;
+
+            int randomInt = Random.Range(1, 9);
+            if (randomInt == 7)
+            {
+                scramble = true;
+            } else
+            {
+                scramble = false;
+            }
+
             Reshuffle();
         }
     }
