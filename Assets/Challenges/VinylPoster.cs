@@ -2,22 +2,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 
-using TMPro;
-
-public class MusicPlayer : MonoBehaviour
+public class VinylPoster : MonoBehaviour
 {
-    private bool isPlaying = false;
-    //private Animator animator;
-    public UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor socket;
-    public GameObject playingVinyl;
     private Vinyl vinylComponent;
     private TrophyFlag flag;
-    private AudioSource audioSource;
+    public GameObject playingVinyl;
+    public AudioSource errorSND;
+    public AudioSource successSND;
 
+    public int id = 0;
+    public UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor socket;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        isPlaying = false;
+        
     }
 
     void Awake()
@@ -29,21 +27,24 @@ public class MusicPlayer : MonoBehaviour
     void OnObjectSnappedIn(SelectEnterEventArgs args)
     {
         playingVinyl = args.interactableObject.transform.gameObject;
-        audioSource = playingVinyl.GetComponent<AudioSource>();
         flag = playingVinyl.GetComponent<TrophyFlag>();
-
-        if (audioSource != null)
+        vinylComponent = playingVinyl.GetComponent<Vinyl>();
+        
+        if (flag != null)
         {
-            VPlay();
-        } else
-        {
-            
+            if (vinylComponent.id == this.id) {
+                flag.RaiseFlag();
+                successSND.Play();
+            }
+            else{
+                //vinylComponent.Reset();
+                errorSND.Play();
+            }
         }
     }
 
     void OnObjectSnappedOut(SelectExitEventArgs args)
     {
-        if (audioSource != null) VPause();
         playingVinyl = null;
     }
 
@@ -51,18 +52,5 @@ public class MusicPlayer : MonoBehaviour
     void Update()
     {
         
-    }
-
-    void VPlay()
-    {
-        isPlaying = true;
-        //animator.SetBool("IsPlaying", true);
-        audioSource.Play();
-    }
-    void VPause()
-    {
-        isPlaying = false;
-        //animator.SetBool("IsPlaying", false);
-        audioSource.Stop();
     }
 }

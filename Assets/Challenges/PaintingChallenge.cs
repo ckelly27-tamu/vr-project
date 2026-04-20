@@ -21,6 +21,9 @@ public class PaintingChallenge : MonoBehaviour
 
     public AudioSource correctAS;
     public AudioSource incorrectAS;
+
+    private int totalRounds = 3;
+    private int goodRounds = 0;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -103,10 +106,21 @@ public class PaintingChallenge : MonoBehaviour
         if (p.id == rightPaintingScript.id)
         {
             correctAS.Play();
-            prize.SetActive(true);
-        } else
+            goodRounds++;
+
+            if (goodRounds >= totalRounds)
+            {
+                prize.SetActive(true);
+                if (audioSource != null) audioSource.Stop();
+            if (rightPaintingScript != null) rightPaintingScript.ReleasePainting();
+            } else { 
+                Reshuffle(); 
+            }
+            
+        } else if (goodRounds < totalRounds)
         {
             incorrectAS.Play();
+            goodRounds = 0;
             Reshuffle();
         }
     }
