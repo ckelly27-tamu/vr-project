@@ -51,7 +51,11 @@ public class HandTriggerZone : MonoBehaviour
         var obj = other.gameObject;
         var interactor = obj.GetComponent<XRBaseInputInteractor>();
         if (interactor != null) {
-            
+            var hapticImpulse = interactor.GetComponent<UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics.HapticImpulsePlayer>();
+            if (hapticImpulse != null)
+            {
+                StartCoroutine(HapticPulsePattern(amplitude, 0.1f, 0.1f, id + 2, hapticImpulse));
+            }
             //textMeshPro.text = "Exit: " + obj.name;
             OnHandExited?.Invoke(interactor);
         } 
