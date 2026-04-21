@@ -2867,7 +2867,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable
   m_InteractionManager: {fileID: 0}
   m_Colliders:
-  - {fileID: 1047790142}
+  - {fileID: 394926209}
   m_InteractionLayers:
     m_Bits: 1
   m_DistanceCalculationMode: 1
@@ -3522,7 +3522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb844fc4489cc435c9950bcca81e91a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrophyFlag
-  tc: {fileID: 0}
+  tc: {fileID: 1350321021}
 --- !u!114 &403977667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5180,7 +5180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable
   m_InteractionManager: {fileID: 0}
   m_Colliders:
-  - {fileID: 1047790142}
+  - {fileID: 526749437}
   m_InteractionLayers:
     m_Bits: 1
   m_DistanceCalculationMode: 1
@@ -12339,7 +12339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb844fc4489cc435c9950bcca81e91a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrophyFlag
-  tc: {fileID: 0}
+  tc: {fileID: 1350321021}
 --- !u!114 &1155081102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13581,7 +13581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Locomotion.Movement.ContinuousMoveProvider
   m_Mediator: {fileID: 0}
   m_TransformationPriority: 0
-  m_MoveSpeed: 1
+  m_MoveSpeed: 4
   m_InAirControlModifier: 0.5
   m_EnableStrafe: 1
   m_EnableFly: 0
@@ -17203,7 +17203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb844fc4489cc435c9950bcca81e91a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrophyFlag
-  tc: {fileID: 0}
+  tc: {fileID: 1350321021}
 --- !u!114 &1498492774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19253,7 +19253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable
   m_InteractionManager: {fileID: 0}
   m_Colliders:
-  - {fileID: 1047790142}
+  - {fileID: 1708707066}
   m_InteractionLayers:
     m_Bits: 1
   m_DistanceCalculationMode: 1
@@ -21893,7 +21893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb844fc4489cc435c9950bcca81e91a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrophyFlag
-  tc: {fileID: 0}
+  tc: {fileID: 1350321021}
 --- !u!114 &2031295174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22639,7 +22639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb844fc4489cc435c9950bcca81e91a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrophyFlag
-  tc: {fileID: 0}
+  tc: {fileID: 1350321021}
 --- !u!114 &2102986783
 MonoBehaviour:
   m_ObjectHideFlags: 0
