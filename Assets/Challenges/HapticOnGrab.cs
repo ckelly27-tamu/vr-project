@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using System.Collections;
 
 public class HapticOnGrab : MonoBehaviour
 {
@@ -11,13 +12,13 @@ public class HapticOnGrab : MonoBehaviour
 
     private Vector3 originalLocation;
     private Quaternion originalRotation;
-
+    public TrophyFlag flag;
     private UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics.HapticImpulsePlayer hapticImpulse;
 
     void Awake()
     {
-        originalLocation = gameObject.location;
-        originalRotation = gameObject.rotation;
+        originalLocation = transform.position;
+        originalRotation = transform.rotation;
     }
     private void OnEnable()
     {
@@ -40,7 +41,7 @@ public class HapticOnGrab : MonoBehaviour
             hapticImpulse = interactor.GetComponent<UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics.HapticImpulsePlayer>();
             if (hapticImpulse != null)
             {
-                hapticImpulse.SendHapticImpulse(amplitude, duration);
+                StartCoroutine(HapticPulsePattern(amplitude, 0.1f, 0.1f, id + 2, hapticImpulse));
             }
         }
     }
@@ -52,8 +53,8 @@ public class HapticOnGrab : MonoBehaviour
             hapticImpulse.SendHapticImpulse(1.0f, 4.0f);
         }
 
-        gameObject.location = originalLocation;
-        gameObject.rotation = originalRotation;
+        transform.position = originalLocation;
+        transform.rotation = originalRotation;
     }
 
     public void Take()
@@ -61,6 +62,16 @@ public class HapticOnGrab : MonoBehaviour
         if (hapticImpulse != null)
         {
             hapticImpulse.SendHapticImpulse(0.25f, 0.5f);
+        }
+        flag.RaiseFlag();
+    }
+
+    IEnumerator HapticPulsePattern(float amplitude, float pulseDuration, float restDuration, int pulseCount, UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics.HapticImpulsePlayer controller)
+    {
+        for (int i = 0; i < pulseCount; i++)
+        {
+            controller.SendHapticImpulse(amplitude, pulseDuration);
+            yield return new WaitForSeconds(pulseDuration + restDuration);
         }
     }
 }

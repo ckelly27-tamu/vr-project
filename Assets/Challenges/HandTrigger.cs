@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using TMPro;
+using System.Collections;
 
 public class HandTriggerZone : MonoBehaviour
 {
@@ -15,7 +16,6 @@ public class HandTriggerZone : MonoBehaviour
 
     public AudioSource testSound;
     public AudioSource errorSound;
-    public TMP_Text textMeshPro;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -25,9 +25,9 @@ public class HandTriggerZone : MonoBehaviour
             var hapticImpulse = interactor.GetComponent<UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics.HapticImpulsePlayer>();
             if (hapticImpulse != null)
             {
-                hapticImpulse.SendHapticImpulse(amplitude, duration);
+                StartCoroutine(HapticPulsePattern(amplitude, 0.1f, 0.1f, id + 2, hapticImpulse));
             }
-            textMeshPro.text = "Enter: " + other.gameObject.name;
+            //textMeshPro.text = "Enter: " + other.gameObject.name;
             //OnHandEntered?.Invoke(interactor);
         }   
         else
@@ -52,8 +52,17 @@ public class HandTriggerZone : MonoBehaviour
         var interactor = obj.GetComponent<XRBaseInputInteractor>();
         if (interactor != null) {
             
-            textMeshPro.text = "Exit: " + obj.name;
+            //textMeshPro.text = "Exit: " + obj.name;
             OnHandExited?.Invoke(interactor);
         } 
+    }
+
+    IEnumerator HapticPulsePattern(float amplitude, float pulseDuration, float restDuration, int pulseCount, UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics.HapticImpulsePlayer controller)
+    {
+        for (int i = 0; i < pulseCount; i++)
+        {
+            controller.SendHapticImpulse(amplitude, pulseDuration);
+            yield return new WaitForSeconds(pulseDuration + restDuration);
+        }
     }
 }
